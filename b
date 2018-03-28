@@ -4,57 +4,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication2
+namespace ConsoleApplication3
 {
     class Program
     {
         static public int pos(string a, string b, string[] c)
         {
-            
+
             int i = 0;
             int j = 0;
-            int min = 1; 
-            int t1 = 0, t2 = 0 ;
-            Boolean f_a = false, f_b = false; 
+            int min = 1;
+            int t1 = 0, t2 = 0;
+            Boolean f_a = false, f_b = false;
             int minn = c.Length;
             if (a != b)
             {
-            do
-            {
-                for (; i < c.Length; i++)
+                do
                 {
-                    if (c[i] == a)
+                    for (; i < c.Length; i++)
                     {
-                        t1 = i;
-                        f_a = true;
-                        break;
+                        if (c[i] == a)
+                        {
+                            t1 = i;
+                            f_a = true;
+                            break;
+                        }
                     }
-                }
-                for (; j < c.Length; j++)
-                {
-                    if (c[j] == b)
+                    for (; j < c.Length; j++)
                     {
-                        t2 = j;
-                        f_b = true;
-                        break;
+                        if (c[j] == b)
+                        {
+                            t2 = j;
+                            f_b = true;
+                            break;
+                        }
                     }
+                    if (t2 > t1)
+                    {
+                        min = t2 - t1;
+                        i++;
+                    }
+                    else
+                    {
+                        min = t1 - t2;
+                        j++;
+                    }
+                    if (minn > min)
+                    {
+                        minn = min;
+                    }
+                    //i++; j++;
+                    //Console.WriteLine("ss");
                 }
-                if (t2 > t1)
-                {
-                    min = t2 - t1;
-                }
-                else
-                {
-                    min = t1 - t2;
-                }     
-                if (minn > min)
-                {
-                    minn = min;
-                }
-                i++; j++;
+                while ((i < c.Length) && (j < c.Length));
             }
-            while ((i < c.Length) || (j < c.Length));}
-            else{
+            else
+            {
                 for (; i < c.Length; i++)
                 {
                     if (c[i] == a)
@@ -79,8 +84,8 @@ namespace ConsoleApplication2
         }
         static void Main(string[] args)
         {
-            string[] a = { "cat", "dog", "bird", "fish", "cat", "duck", "chicken", "dog" };
-            Console.WriteLine("{0}: ",pos("fish","chicken",a));
+            string[] a = { "cat", "dog", "bird", "fish", "cat","duck", "chicken", "dog", "lion" };
+            Console.WriteLine("{0}: ", pos("lion", "chicken", a));
             Console.ReadLine();
         }
     }
